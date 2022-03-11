@@ -17,13 +17,13 @@ public class MoodController {
     @GetMapping
     public String displayAllMoods(Model model) {
         model.addAttribute("moods", moods);
-        return "mood-list.html";
+        return "moods/index.html";
     }
 
     //Lives at moods/create
     @GetMapping("create")
     public String renderCreateMoodForm() {
-        return "mood-create.html";
+        return "moods/create.html";
     }
 
     //Lives at moods/create

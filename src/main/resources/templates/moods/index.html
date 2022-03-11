@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8" />
+    <title>MoodHue</title>
+</head>
+<body>
+
+<h1>All Moods</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<p th:unless="${moods} and ${moods.size}">No Moods!</p>
+
+<ul>
+    <th:block th:each="mood : ${moods}">
+        <li th:text="${mood}"</li>
+    </th:block>
+</ul>
+
+</body>
+</html>

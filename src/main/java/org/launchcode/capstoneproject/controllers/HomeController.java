@@ -10,6 +10,9 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private static List<String> moods = new ArrayList<>();
+    @GetMapping
+    public String index() {
+        return "rootIndex";
+    }
 
 }
