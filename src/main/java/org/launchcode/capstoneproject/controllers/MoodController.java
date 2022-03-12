@@ -4,8 +4,10 @@ import org.launchcode.capstoneproject.data.MoodData;
 import org.launchcode.capstoneproject.models.Mood;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,20 @@ public class MoodController {
 
     //Lives at moods/create
     @GetMapping("create")
-    public String renderCreateMoodForm() {
+    public String displayCreateMoodForm(Model model) {
+        model.addAttribute("title", "Create Mood");
+        model.addAttribute("mood", new Mood());
         return "moods/create.html";
     }
 
     //Lives at moods/create
     @PostMapping("create")
-    public String createMood(@ModelAttribute Mood newMood) {
+    public String processCreateMoodForm(@ModelAttribute @Valid Mood newMood,
+                                        Errors errors, Model model) {
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Create Mood");
+            return "moods/create.html";
+        }
         MoodData.add(newMood);
         return "redirect:";
     }

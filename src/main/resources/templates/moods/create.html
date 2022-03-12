@@ -7,9 +7,17 @@
 
 <nav th:replace="fragments :: navigation"></nav>
 
+<p th:text="${errorMsg}" style="color: red;"></p>
+
 <form method="post" action="/moods/create">
-    <input type="text" name="name">
-    <input type="text" name="moodColor">
+    <div>
+        <label>Mood:<input type="text" th:field="${mood.name}"></label>
+        <p class="errors" th:errors="${mood.name}"></p>
+    </div>
+    <div>
+        <label>Hue:<input type="text" th:field="${mood.moodColor}"></label>
+        <p class="errors" th:errors="${mood.moodColor}"></p>
+    </div>
     <input type="submit" name="Create Mood">
 </form>
 

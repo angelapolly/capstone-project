@@ -1,5 +1,7 @@
 package org.launchcode.capstoneproject.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.awt.*;
 import java.util.Objects;
 
@@ -8,12 +10,21 @@ public class Mood {
     private int id;
     private static int nextId = 1;
 
+    @NotBlank(message = "Oops! You forgot to share how you're feeling today.")
+    @Size(min = 3, max = 20, message = "Hey, it looks like you made a typo. Please try again.")
     private String name;
+
+    @NotBlank(message = "Don't forget to choose a hue for your mood today!")
+    @Size(min = 3, max = 20, message = "Oops! Are you sure that's the name of a color?")
     private String moodColor;
 
     public Mood(String name, String moodColor) {
+        this();
         this.name = name;
         this.moodColor = moodColor;
+    }
+
+    public Mood() {
         this.id = nextId;
         nextId++;
     }
