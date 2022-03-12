@@ -29,9 +29,8 @@ public class MoodController {
 
     //Lives at moods/create
     @PostMapping("create")
-    public String createMood(@RequestParam String moodName,
-                             @RequestParam String moodColor) {
-        MoodData.add(new Mood(moodName, moodColor));
+    public String createMood(@ModelAttribute Mood newMood) {
+        MoodData.add(newMood);
         return "redirect:";
     }
 
