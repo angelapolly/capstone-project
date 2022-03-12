@@ -1,9 +1,11 @@
 package org.launchcode.capstoneproject.controllers;
 
+import org.launchcode.capstoneproject.models.Mood;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +13,7 @@ import java.util.List;
 @RequestMapping("moods")
 public class MoodController {
 
-    private static List<String> moods = new ArrayList<>();
+    private static List<Mood> moods = new ArrayList<>();
 
     //Lives at /moods
     @GetMapping
@@ -28,8 +30,9 @@ public class MoodController {
 
     //Lives at moods/create
     @PostMapping("create")
-    public String createMood(@RequestParam String moodName) {
-        moods.add(moodName);
+    public String createMood(@RequestParam String moodName,
+                             @RequestParam String moodColor) {
+        moods.add(new Mood(moodName, moodColor));
         return "redirect:";
     }
 }

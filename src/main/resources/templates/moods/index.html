@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8" />
-    <title>MoodHue</title>
-</head>
+<head th:replace="fragments :: head"></head>
 <body>
 
 <h1>All Moods</h1>
@@ -14,7 +11,8 @@
 
 <ul>
     <th:block th:each="mood : ${moods}">
-        <li th:text="${mood}"</li>
+        <li th:text="${mood.name}"></li>
+        <li th:text="${mood.moodColor}"></li>
     </th:block>
 </ul>
 
