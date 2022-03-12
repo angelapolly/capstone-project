@@ -1,5 +1,6 @@
 package org.launchcode.capstoneproject.controllers;
 
+import org.launchcode.capstoneproject.data.MoodData;
 import org.launchcode.capstoneproject.models.Mood;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,12 +14,10 @@ import java.util.List;
 @RequestMapping("moods")
 public class MoodController {
 
-    private static List<Mood> moods = new ArrayList<>();
-
     //Lives at /moods
     @GetMapping
     public String displayAllMoods(Model model) {
-        model.addAttribute("moods", moods);
+        model.addAttribute("moods", MoodData.getAll());
         return "moods/index.html";
     }
 
@@ -32,7 +31,7 @@ public class MoodController {
     @PostMapping("create")
     public String createMood(@RequestParam String moodName,
                              @RequestParam String moodColor) {
-        moods.add(new Mood(moodName, moodColor));
+        MoodData.add(new Mood(moodName, moodColor));
         return "redirect:";
     }
 }
