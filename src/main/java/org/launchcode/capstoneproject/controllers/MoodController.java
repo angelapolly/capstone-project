@@ -34,4 +34,23 @@ public class MoodController {
         MoodData.add(new Mood(moodName, moodColor));
         return "redirect:";
     }
+
+    //Lives at moods/delete
+    @GetMapping("delete")
+    public String displayDeleteMoodForm(Model model) {
+        model.addAttribute("title", "Delete Mood");
+        model.addAttribute("moods", MoodData.getAll());
+        return "moods/delete.html";
+    }
+
+    //Lives at moods/delete
+    @PostMapping("delete")
+    public String processDeleteMoodForm(@RequestParam(required= false) int[] moodIds) {
+        if (moodIds != null) {
+            for (int id : moodIds) {
+                MoodData.remove(id);
+            }
+        }
+        return "redirect:";
+    }
 }

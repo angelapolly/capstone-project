@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1>Delete Mood</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post">
+
+    <th:block th:each="mood : ${moods}">
+        <div class="form-group">
+            <label>
+                <span th:text="${mood.name}"></span>
+                <input type="checkbox" name="moodIds" th:value="${mood.id}">
+                <input type="submit" name="Delete Mood">
+            </label>
+        </div>
+    </th:block>
+</form>
+
+</body>
+</html>
