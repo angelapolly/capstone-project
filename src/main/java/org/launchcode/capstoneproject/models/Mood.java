@@ -23,9 +23,12 @@ public class Mood {
     @Size(min = 3, max = 20, message = "Oops! Are you sure that's the name of a color?")
     private String moodColor;
 
-    public Mood(String name, String moodColor) {
+    private MoodType type;
+
+    public Mood(String name, String moodColor, MoodType type) {
         this.name = name;
         this.moodColor = moodColor;
+        this.type = type;
     }
 
     public Mood() {}
@@ -48,6 +51,14 @@ public class Mood {
 
     public int getId() {
         return id;
+    }
+
+    public MoodType getType() {
+        return type;
+    }
+
+    public void setType(MoodType type) {
+        this.type = type;
     }
 
     @Override

@@ -15,6 +15,16 @@
         <p class="errors" th:errors="${mood.name}"></p>
     </div>
     <div>
+        <label>Type
+            <select th:field="${mood.type}">
+                <option th:each="type : ${types}"
+                        th:value="${type}"
+                        th:text="${type.displayName}">
+                </option>
+            </select>
+        </label>
+    </div>
+    <div>
         <label>Hue:<input type="text" th:field="${mood.moodColor}"></label>
         <p class="errors" th:errors="${mood.moodColor}"></p>
     </div>

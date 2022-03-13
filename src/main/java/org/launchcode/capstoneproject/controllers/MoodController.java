@@ -1,25 +1,27 @@
 package org.launchcode.capstoneproject.controllers;
 
-import org.launchcode.capstoneproject.data.MoodData;
+import org.launchcode.capstoneproject.data.MoodRepository;
 import org.launchcode.capstoneproject.models.Mood;
+import org.launchcode.capstoneproject.models.MoodType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequestMapping("moods")
 public class MoodController {
 
+    @Autowired
+    private MoodRepository moodRepository;
+
     //Lives at /moods
     @GetMapping
     public String displayAllMoods(Model model) {
-        model.addAttribute("moods", MoodData.getAll());
+        model.addAttribute("moods", moodRepository.findAll());
         return "moods/index.html";
     }
 
@@ -28,6 +30,7 @@ public class MoodController {
     public String displayCreateMoodForm(Model model) {
         model.addAttribute("title", "Create Mood");
         model.addAttribute("mood", new Mood());
+        model.addAttribute("types", MoodType.values());
         return "moods/create.html";
     }
 
@@ -39,7 +42,7 @@ public class MoodController {
             model.addAttribute("title", "Create Mood");
             return "moods/create.html";
         }
-        MoodData.add(newMood);
+        moodRepository.save(newMood);
         return "redirect:";
     }
 
@@ -47,7 +50,7 @@ public class MoodController {
     @GetMapping("delete")
     public String displayDeleteMoodForm(Model model) {
         model.addAttribute("title", "Delete Mood");
-        model.addAttribute("moods", MoodData.getAll());
+        model.addAttribute("moods", moodRepository.findAll());
         return "moods/delete.html";
     }
 
@@ -56,7 +59,7 @@ public class MoodController {
     public String processDeleteMoodForm(@RequestParam(required= false) int[] moodIds) {
         if (moodIds != null) {
             for (int id : moodIds) {
-                MoodData.remove(id);
+                moodRepository.deleteById(id);
             }
         }
         return "redirect:";

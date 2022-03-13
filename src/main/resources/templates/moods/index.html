@@ -14,6 +14,7 @@
         <li th:text="${mood.id}"></li>
         <li th:text="${mood.name}"></li>
         <li th:text="${mood.moodColor}"></li>
+        <li th:text="${mood.type.getDisplayName()}"></li>
     </th:block>
 </ul>
 
