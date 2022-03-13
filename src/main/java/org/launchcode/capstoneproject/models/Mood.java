@@ -9,11 +9,7 @@ import java.awt.*;
 import java.util.Objects;
 
 @Entity
-public class Mood {
-
-    @Id
-    @GeneratedValue
-    private int id;
+public class Mood extends AbstractEntity{
 
     @NotBlank(message = "Oops! You forgot to share how you're feeling today.")
     @Size(min = 3, max = 20, message = "Hey, it looks like you made a typo. Please try again.")
@@ -49,29 +45,12 @@ public class Mood {
         this.moodColor = moodColor;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public MoodType getType() {
         return type;
     }
 
     public void setType(MoodType type) {
         this.type = type;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Mood mood = (Mood) o;
-        return id == mood.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
     }
 
     @Override

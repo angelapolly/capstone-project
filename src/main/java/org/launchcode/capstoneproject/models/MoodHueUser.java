@@ -7,7 +7,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class User {
+public class MoodHueUser {
 
     private int id;
 
@@ -21,11 +21,11 @@ public class User {
     @Size(min = 8, message = "Don't get slack, you need at least 8 characters here.")
     private String password;
 
-    public User(String name, String email, String password) {
+    public MoodHueUser(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User() {}
+    public MoodHueUser() {}
 }
