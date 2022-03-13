@@ -9,14 +9,25 @@
 
 <p th:unless="${moods} and ${moods.size}">No Moods!</p>
 
-<ul>
-    <th:block th:each="mood : ${moods}">
-        <li th:text="${mood.id}"></li>
-        <li th:text="${mood.name}"></li>
-        <li th:text="${mood.moodColor}"></li>
-        <li th:text="${mood.type.getDisplayName()}"></li>
-    </th:block>
-</ul>
+<!--<ul>-->
+<!--    <th:block th:each="mood : ${moods}">-->
+<!--        <li th:text="${mood.id}"></li>-->
+<!--        <li th:text="${mood.name}"></li>-->
+<!--        <li th:text="${mood.moodColor}"></li>-->
+<!--        <li th:text="${mood.type.getDisplayName()}"></li>-->
+<!--    </th:block>-->
+<!--</ul>-->
+
+<table>
+    <thead>
+    <tr>
+        <th>Mood Name</th>
+    </tr>
+    </thead>
+    <tr th:each="mood : ${moods}">
+        <td><a th:href="'/moods/detail?moodId=' + ${mood.id}" th:text="${mood.name}"></a></td>
+    </tr>
+</table>
 
 </body>
 </html>

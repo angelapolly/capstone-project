@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("moods")
@@ -63,5 +64,20 @@ public class MoodController {
             }
         }
         return "redirect:";
+    }
+
+    //Lives at moods/detail
+    @GetMapping("detail")
+    public String displayMoodDetails(@RequestParam Integer moodId, Model model) {
+        Optional<Mood> result = moodRepository.findById(moodId);
+
+        if(result.isEmpty()) {
+            model.addAttribute("title", "Invalid Event Id: " + moodId);
+        } else {
+            Mood mood = result.get();
+            model.addAttribute("title", mood.getName() + " Details");
+            model.addAttribute("mood", mood);
+        }
+        return "moods/detail";
     }
 }

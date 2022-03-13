@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1>Create Emotions</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post" action="/emotions/create">
+    <div>
+        <label>Emotion:<input type="text" th:field="${emotion.name}"></label>
+    </div>
+
+    <input type="submit" name="Create Emotion">
+</form>
+
+</body>
+</html>

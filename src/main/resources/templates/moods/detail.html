@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1>Mood Details</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <td th:text="${mood.id}"></td>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td th:text="${mood.name}"></td>
+    </tr>
+    <tr>
+        <th>Hue</th>
+        <td th:text="${mood.moodColor}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
