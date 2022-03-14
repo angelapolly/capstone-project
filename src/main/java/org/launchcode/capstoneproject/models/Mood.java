@@ -1,15 +1,12 @@
 package org.launchcode.capstoneproject.models;
 
-import com.sun.istack.NotNull;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.awt.*;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 public class Mood extends AbstractEntity{
@@ -23,6 +20,9 @@ public class Mood extends AbstractEntity{
     private String moodColor;
 
     private MoodType type;
+
+    @ManyToMany
+    private final List<Emotion> emotions = new ArrayList<>();
 
     public Mood(String name, String moodColor, MoodType type) {
         this.name = name;
@@ -54,6 +54,14 @@ public class Mood extends AbstractEntity{
 
     public void setType(MoodType type) {
         this.type = type;
+    }
+
+    public List<Emotion> getEmotions() {
+        return emotions;
+    }
+
+    public void addEmotion(Emotion emotion) {
+        this.emotions.add(emotion);
     }
 
     @Override
