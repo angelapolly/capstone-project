@@ -21,13 +21,16 @@ public class Mood extends AbstractEntity{
 
     private MoodType type;
 
+    private String journal;
+
     @ManyToMany
     private final List<Emotion> emotions = new ArrayList<>();
 
-    public Mood(String name, String moodColor, MoodType type) {
+    public Mood(String name, String moodColor, MoodType type, String journal) {
         this.name = name;
         this.moodColor = moodColor;
         this.type = type;
+        this.journal = journal;
     }
 
     public Mood() {}
@@ -62,6 +65,14 @@ public class Mood extends AbstractEntity{
 
     public void addEmotion(Emotion emotion) {
         this.emotions.add(emotion);
+    }
+
+    public String getJournal() {
+        return journal;
+    }
+
+    public void setJournal(String journal) {
+        this.journal = journal;
     }
 
     @Override

@@ -94,7 +94,7 @@ public class MoodController {
         Optional<Mood> result = moodRepository.findById(moodId);
         Mood mood = result.get();
         model.addAttribute("title", "Add Emotion to " + mood.getName());
-        model.addAttribute("Emotions", emotionRepository.findAll());
+        model.addAttribute("emotions", emotionRepository.findAll());
         MoodEmotionDTO moodEmotion = new MoodEmotionDTO();
         moodEmotion.setMood(mood);
         model.addAttribute("moodEmotion", moodEmotion);

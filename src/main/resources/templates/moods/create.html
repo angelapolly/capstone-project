@@ -26,6 +26,11 @@
         <label>Hue:<input type="text" th:field="${mood.moodColor}"></label>
         <p class="errors" th:errors="${mood.moodColor}"></p>
     </div>
+    <div>
+        <label>Journal entry:
+            <textarea rows="5" columns="60" name="text" placeholder="Journal about your day" th:field="${mood.journal}"></textarea>
+        </label>
+    </div>
     <input type="submit" name="Create Mood">
 </form>
 
