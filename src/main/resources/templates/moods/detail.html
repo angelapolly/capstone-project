@@ -18,7 +18,15 @@
         <th>Hue</th>
         <td th:text="${mood.moodColor}"></td>
     </tr>
+    <tr>
+        <th>Emotions</th>
+        <td>
+            <span th:each="emotion : ${emotions}" th:text="${emotion.displayName} + ' '"></span>
+        </td>
+    </tr>
 </table>
+
+<a th:href="'/moods/add-emotion?moodId=' + ${mood.id}">Add Emotion</a>
 
 </body>
 </html>

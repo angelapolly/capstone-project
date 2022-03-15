@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<h1>Add Emotions</h1>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<form method="post">
+    <div>
+        <input type="hidden" th:field="${moodEmotion.mood}">
+        <select th:field="${moodEmotion.emotion}">
+            <option th:each="emotion : ${emotions}"
+                    th:value="${emotion.id}"
+                    th:text="${emotion.name}">
+            </option>
+        </select>
+    </div>
+    <input type="submit" value="Add Emotion">
+</form>
+
+</body>
+</html>

@@ -1,8 +1,11 @@
 package org.launchcode.capstoneproject.controllers;
 
+import org.launchcode.capstoneproject.data.EmotionRepository;
 import org.launchcode.capstoneproject.data.MoodRepository;
+import org.launchcode.capstoneproject.models.Emotion;
 import org.launchcode.capstoneproject.models.Mood;
 import org.launchcode.capstoneproject.models.MoodType;
+import org.launchcode.capstoneproject.models.dto.MoodEmotionDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,9 @@ public class MoodController {
 
     @Autowired
     private MoodRepository moodRepository;
+
+    @Autowired
+    private EmotionRepository emotionRepository;
 
     //Lives at /moods
     @GetMapping
@@ -77,7 +83,37 @@ public class MoodController {
             Mood mood = result.get();
             model.addAttribute("title", mood.getName() + " Details");
             model.addAttribute("mood", mood);
+            model.addAttribute("emotions", mood.getEmotions());
         }
         return "moods/detail";
+    }
+
+    //Lives at moods/add-emotion?moodId=
+    @GetMapping("add-emotion")
+    public String displayAddEmotionForm(@RequestParam Integer moodId, Model model) {
+        Optional<Mood> result = moodRepository.findById(moodId);
+        Mood mood = result.get();
+        model.addAttribute("title", "Add Emotion to " + mood.getName());
+        model.addAttribute("Emotions", emotionRepository.findAll());
+        MoodEmotionDTO moodEmotion = new MoodEmotionDTO();
+        moodEmotion.setMood(mood);
+        model.addAttribute("moodEmotion", moodEmotion);
+        return "moods/add-emotion.html";
+    }
+
+    @PostMapping("add-emotion")
+    public String processAddEmotionForm(@ModelAttribute @Valid MoodEmotionDTO moodEmotion,
+                                        Errors errors,
+                                        Model model) {
+        if (!errors.hasErrors()) {
+            Mood mood = moodEmotion.getMood();
+            Emotion emotion = moodEmotion.getEmotion();
+            if(!mood.getEmotions().contains(emotion)){
+                mood.addEmotion(emotion);
+                moodRepository.save(mood);
+            }
+            return "redirect:detail?moodId=" + mood.getId();
+        }
+        return "redirect:add-emotion.html";
     }
 }
