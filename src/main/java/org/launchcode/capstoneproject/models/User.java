@@ -22,9 +22,8 @@ public class User extends AbstractEntity{
     @Size(min = 8, message = "Don't get slack, you need at least 8 characters here.")
     private String pwHash;
 
-    public User(String username, String email, String password) {
+    public User(String username, String password) {
         this.username = username;
-        this.email = email;
         this.pwHash = encoder.encode(password);
     }
 
