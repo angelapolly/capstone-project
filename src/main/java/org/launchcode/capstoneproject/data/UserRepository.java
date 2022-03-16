@@ -1,9 +1,9 @@
 package org.launchcode.capstoneproject.data;
 
-import org.launchcode.capstoneproject.models.UserProfile;
+import org.launchcode.capstoneproject.models.User;
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<UserProfile, Integer> {
+public interface UserRepository extends CrudRepository<User, Integer> {
 
-    UserProfile findByUsername(String username);
+    User findByUsername(String username);
 }

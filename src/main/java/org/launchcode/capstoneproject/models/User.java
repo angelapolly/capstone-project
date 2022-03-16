@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class UserProfile extends AbstractEntity{
+public class User extends AbstractEntity{
 
     private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
@@ -22,13 +22,13 @@ public class UserProfile extends AbstractEntity{
     @Size(min = 8, message = "Don't get slack, you need at least 8 characters here.")
     private String pwHash;
 
-    public UserProfile(String username, String email, String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.pwHash = encoder.encode(password);
     }
 
-    public UserProfile() {}
+    public User() {}
 
     public String getUsername() {
         return username;
