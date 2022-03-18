@@ -116,4 +116,21 @@ public class MoodController {
         }
         return "redirect:add-emotion.html";
     }
+
+    @GetMapping("edit/{moodId}")
+    public String displayEditForm(Model model, @PathVariable int moodId) {
+        model.addAttribute( "Edit Mood ${mood.name}(id=${mood.id})", moodRepository.findById(moodId));
+        return "redirect:";
+    }
+
+    @PostMapping("{edit}")
+    public String processEditForm(Mood mood, int moodId, String name, String moodColor, MoodType type, String journal) {
+        moodRepository.findById(moodId);
+        mood.setName(mood.getName());
+        mood.setMoodColor(mood.getMoodColor());
+        mood.setType(mood.getType());
+        mood.setJournal(mood.getJournal());
+        return "redirect:/moods";
+    }
+
 }

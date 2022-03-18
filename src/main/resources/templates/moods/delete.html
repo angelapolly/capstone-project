@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
 
-<h1>Delete Mood</h1>
+<body class="container">
+
+<!--<h1>Delete Mood</h1>-->
 
 <nav th:replace="fragments :: navigation"></nav>
 
@@ -13,8 +14,8 @@
         <div class="form-group">
             <label>
                 <span th:text="${mood.name}"></span>
-                <input type="checkbox" name="moodIds" th:value="${mood.id}">
-                <input type="submit" name="Delete Mood">
+                <input type="checkbox" name="moodIds" th:value="${mood.id}" class="form-control">
+                <input type="submit" name="Delete Mood" class="btn btn-danger">
             </label>
         </div>
     </th:block>

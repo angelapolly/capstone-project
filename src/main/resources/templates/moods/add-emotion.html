@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
 
-<h1>Add Emotions</h1>
+<body class="container">
+
+<!--<h1>Add Emotions</h1>-->
 
 <nav th:replace="fragments :: navigation"></nav>
 
 <form method="post">
-    <div>
-        <input type="hidden" th:field="${moodEmotion.mood}">
+    <div class="form-group">
+        <input type="hidden" th:field="${moodEmotion.mood}" class="form-control">
         <select th:field="${moodEmotion.emotion}">
             <option th:each="emotion : ${emotions}"
                     th:value="${emotion.id}"
@@ -17,7 +18,7 @@
             </option>
         </select>
     </div>
-    <input type="submit" value="Add Emotion">
+    <input type="submit" value="Add Emotion" class="btn btn-success">
 </form>
 
 </body>

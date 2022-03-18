@@ -4,15 +4,19 @@
 
 <body class="container">
 
+<!--<h1>Create Mood</h1>-->
+
 <nav th:replace="fragments :: navigation"></nav>
 
-<form method="post" action="/moods/create">
+<input type="hidden" th:value="${mood.id}" name="moodId">
+
+<form method="post" th:action="@{/moods/edit}">
     <div class="form-group">
         <label>Mood:<input type="text" th:field="${mood.name}" class="form-control"></label>
         <p class="errors" th:errors="${mood.name}"></p>
     </div>
     <div class="form-group">
-        <label>Type
+        <label>Mood Type
             <select th:field="${mood.type}">
                 <option th:each="type : ${types}"
                         th:value="${type}"
@@ -30,7 +34,7 @@
             <textarea class="form-control z-depth-1" rows="3" placeholder="Write about your day..." th:field="${mood.journal}"></textarea>
         </label>
     </div>
-    <input type="submit" name="Create Mood" class="btn btn-success">
+    <input type="submit" name="Edit Mood" class="btn btn-warning">
 </form>
 
 </body>

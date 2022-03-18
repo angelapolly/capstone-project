@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
 
-<h1>All Emotions</h1>
+<body class="container">
+
+<!--<h1>All Emotions</h1>-->
 
 <nav th:replace="fragments :: navigation"></nav>
 
 <p th:unless="${emotions} and ${emotions.size}">No Emotions!</p>
 
-<ul>
-    <th:block th:each="emotion : ${emotions}">
-        <li th:text="${emotion.id}"></li>
-        <li th:text="${emotion.name}"></li>
-    </th:block>
-</ul>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Emotions</th>
+        <tr>
+    </thead>
+            <tr th:each="emotion : ${emotions}">
+                <td th:text="${emotion.id}"></td>
+                <td th:text="${emotion.name}"></td>
+            </tr>
+</table>
 
 </body>
 </html>

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
-<body>
 
-<h1>All Moods</h1>
+<body class="container">
+
+<!--<h1>All Moods</h1>-->
 
 <nav th:replace="fragments :: navigation"></nav>
 
@@ -18,15 +19,15 @@
 <!--    </th:block>-->
 <!--</ul>-->
 
-<table>
+<table class="table table-striped">
     <thead>
-    <tr>
-        <th>Mood Name</th>
-    </tr>
+        <tr>
+            <th>Mood Name</th>
+        </tr>
     </thead>
-    <tr th:each="mood : ${moods}">
-        <td><a th:href="'/moods/detail?moodId=' + ${mood.id}" th:text="${mood.name}"></a></td>
-    </tr>
+        <tr th:each="mood : ${moods}">
+            <td><a th:href="'/moods/detail?moodId=' + ${mood.id}" th:text="${mood.name}" class="btn btn-link"></a></td>
+        </tr>
 </table>
 
 </body>
